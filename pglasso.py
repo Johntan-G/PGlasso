@@ -101,17 +101,17 @@ def solveBlockGlasso(signal):
 	Z = np.real(Z)
 	B = lasso(Z,Y,beta_value)
 
-    updated_column = np.dot(W11,B)
+    	updated_column = np.dot(W11,B)
 
-    matrix_ind = np.array(range(0,NN))
-    matrix_ind = np.delete(matrix_ind,n)
-    column_ind = 0
-    for k in matrix_ind:
-        deltamatrix[k,n]=updated_column[column_ind] - W_matrix[k,n]
-        deltamatrix[n,k]=updated_column[column_ind] - W_matrix[k,n]
+    	matrix_ind = np.array(range(0,NN))
+    	matrix_ind = np.delete(matrix_ind,n)
+    	column_ind = 0
+    	for k in matrix_ind:
+            deltamatrix[k,n]=updated_column[column_ind] - W_matrix[k,n]
+            deltamatrix[n,k]=updated_column[column_ind] - W_matrix[k,n]
 	    W_matrix[k,n] = updated_column[column_ind]
 	    W_matrix[n,k] = updated_column[column_ind]
-        column_ind = column_ind+1
+            column_ind = column_ind+1
 
     return W_matrix-old_W
 
